@@ -273,6 +273,7 @@ GameObject:
   - component: {fileID: 8941946410364576472}
   - component: {fileID: 866644444755657981}
   - component: {fileID: 6483032425787947169}
+  - component: {fileID: 6012939554838966254}
   m_Layer: 0
   m_Name: Selection
   m_TagString: Untagged
@@ -348,6 +349,66 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6012939554838966254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820990995720759627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbd5c97c7d885fb4c90ee8899e02c158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animatableComponent: {fileID: 6483032425787947169}
+  onAnimationStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onAnimationRunning:
+    m_PersistentCalls:
+      m_Calls: []
+  onAnimationEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  duration: 0.8
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -2
+      outSlope: -2
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  loop: 1
+  playOnStart: 0
+  fromColor: {r: 1, g: 0, b: 0, a: 1}
+  toColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &3709761228512569862
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,9 +552,13 @@ MonoBehaviour:
   shapeRenderer: {fileID: 3435180015616075278}
   selectionRenderer: {fileID: 6483032425787947169}
   numberText: {fileID: 4387171243379455484}
-  selectedColor: {r: 0.49073157, g: 0.735849, b: 0.18396226, a: 1}
   deselectedColor: {r: 0.49019608, g: 0.7372549, b: 0.18431373, a: 0}
-  hoverColor: {r: 0.9528302, g: 0.5030393, b: 0.16629584, a: 1}
+  hoverColor: {r: 0.1647059, g: 0.9529412, b: 0.5481074, a: 1}
+  correctColor: {r: 0, g: 1, b: 0.071077585, a: 1}
+  incorrectColor: {r: 1, g: 0, b: 0, a: 1}
+  colorChangeTime: 0.15
+  canInteract: 0
+  selectionFadeAnimation: {fileID: 6012939554838966254}
 --- !u!65 &7093112944940650591
 BoxCollider:
   m_ObjectHideFlags: 0

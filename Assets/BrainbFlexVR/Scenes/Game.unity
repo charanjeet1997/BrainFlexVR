@@ -2488,10 +2488,10 @@ MonoBehaviour:
   spawnPoint: {fileID: 975174661}
   targetSpawnPoint: {fileID: 1164890811}
   colorOptions:
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 1, g: 0.68007255, b: 0, a: 1}
+  - {r: 1, g: 0.42356968, b: 0, a: 1}
+  - {r: 0.49434853, g: 0.6509434, b: 0.5678302, a: 1}
   - {r: 0, g: 0.07410216, b: 1, a: 1}
-  - {r: 0, g: 1, b: 0.49468493, a: 1}
+  - {r: 0, g: 1, b: 0.93067217, a: 1}
   shapeOptions:
   - {fileID: 2800000, guid: 72bca99913f9f5f4a860528b7f77cce8, type: 3}
   - {fileID: 2800000, guid: ad4f0495bda3d01418c589e71f5afba1, type: 3}
@@ -3843,7 +3843,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1097051330}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 8.87}
+  m_LocalPosition: {x: 0, y: 0, z: 8.23}
   m_LocalScale: {x: 0.002, y: 0.002, z: 0.002}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -4203,7 +4203,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1198763080}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 8.87}
+  m_LocalPosition: {x: 0, y: 0, z: 8.23}
   m_LocalScale: {x: 0.002, y: 0.002, z: 0.002}
   m_ConstrainProportionsScale: 1
   m_Children:

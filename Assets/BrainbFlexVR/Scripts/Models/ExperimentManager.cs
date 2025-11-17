@@ -42,6 +42,8 @@ namespace BrainFlexVR
 
         private IPropertyManager propertyManager;
         private Property<float> experimentTimeProperty;
+        
+        bool paused = false;
 
         private string experimentID;
 
@@ -75,7 +77,7 @@ namespace BrainFlexVR
 
         private void Update()
         {
-            if (experimentRunning)
+            if (experimentRunning && !paused)
             {
                 experiementTime -= Time.deltaTime;
                 experimentTimeProperty.Value = experiementTime;
@@ -94,8 +96,14 @@ namespace BrainFlexVR
         private void ReshuffleRules()
         {
             shuffledRules.Clear();
-            shuffledRules.AddRange(ruleSequence);
-
+            for (int i = 0; i < ruleSequence.Count; i++)
+            {
+                if (!shuffledRules.Contains(ruleSequence[i]))
+                {
+                    shuffledRules.Add(ruleSequence[i]);
+                }
+            }
+            
             int n = shuffledRules.Count;
             while (n > 1)
             {
@@ -124,7 +132,7 @@ namespace BrainFlexVR
                 // NEW — Shuffle rule order
                 ReshuffleRules();
                 ruleIndex = 0;
-
+                
                 currentRule = RuleFactory.Rules[shuffledRules[ruleIndex]];
 
                 experimentStartTime = Time.time;
@@ -146,20 +154,28 @@ namespace BrainFlexVR
             CoroutineExtension.ExecuteAfterFrame(this, cardGenerator.SpawnTargetCard);
         }
 
-        public void Evaluate(Card response)
+        public void Evaluate(Card response, out bool isTrue)
         {
-            if (!experimentRunning) return;
 
+            if (!experimentRunning)
+            {
+                isTrue = false;
+                return;
+            }
+
+            paused = true;
             trialIndex++;
             bool isCorrect = currentRule.Evaluate(response, cardGenerator.TargetCard);
             float responseTime = Time.time - trialStartTime;
 
             if (isCorrect)
             {
+                isTrue = true;
                 feedbackProvider.PlayCorrect();
             }
             else
             {
+                isTrue = false;
                 feedbackProvider.PlayIncorrect();
             }
 
@@ -172,8 +188,8 @@ namespace BrainFlexVR
                 isCorrect,
                 responseTime
             );
-
-            cardGenerator.DestroyTargetCard();
+            cardGenerator.DisableOtherCards(response);
+            
 
             // -------------------------------------------------------------
             // 🔄 Rule change logic (MINIMAL PATCH)
@@ -196,7 +212,11 @@ namespace BrainFlexVR
                 Debug.Log($"Rule changed → {currentRule.Name}");
             }
 
-            StartNextTrial();
+            CoroutineExtension.Execute(this, Constants.changeAnswerAfterSec + 0.1f,cardGenerator.DestroyTargetCard,StartNextTrial,
+                () =>
+                {
+                    paused = false;
+                });
         }
 
         private void InitializeObservers()

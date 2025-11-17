@@ -4,6 +4,8 @@ namespace BrainFlexVR
 	{
 		public const string Correct = "Correct";
 		public const string Incorrect = "Incorrect";
+		
+		public const float changeAnswerAfterSec = 3.5f; 
 	}
 	public static class ObserverNameConstants
 	{

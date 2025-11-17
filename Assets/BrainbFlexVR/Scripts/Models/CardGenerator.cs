@@ -76,6 +76,17 @@ namespace BrainFlexVR
 			}
 		}
 
+		public void DisableOtherCards(Card card)
+		{
+			foreach (Card otherCard in deck)
+			{
+				if (otherCard != card)
+				{
+					otherCard.DisableCard();
+				}
+			}
+		}
+
 		public void DestroyTargetCard()
 		{
 			if (targetCard != null)
